@@ -13,8 +13,8 @@ import java.util.List;
 @Repository
 public class UserDao {
     private List<User> users = Arrays.asList(
-            new User("admin", "admin"),
-            new User("user1", "user1"));
+            new User("admin", "admin", 3),
+            new User("user1", "user1", 1));
 
     public List<User> getAllUsers() {
         return users;

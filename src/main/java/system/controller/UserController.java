@@ -22,7 +22,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public @ResponseBody
     List<User> getAllUsers() {
         return userService.getAllUsers();
@@ -33,15 +33,24 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("userFromServer", new User());
         modelAndView.setViewName("users_check_page");
+
         return modelAndView;
     }
 
     @RequestMapping(value = "/check", method = RequestMethod.POST)
-    public @ResponseBody
-    String checkUser(@ModelAttribute("userFromServer") User user) {
+    public ModelAndView checkUser(@ModelAttribute("userFromFrontend") User user) {
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("userFromServer", user);
+
         if ("admin".equals(user.getName()) && "admin".equals(user.getPassword())) {
-            return "valid";
+            modelAndView.setViewName("show_user");
+            return modelAndView;
         }
-        return "invalid";
+
+        modelAndView.setViewName("users_check_page");
+        return modelAndView;
     }
+
+
 }
