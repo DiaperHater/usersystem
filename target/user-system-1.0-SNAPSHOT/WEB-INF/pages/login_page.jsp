@@ -12,12 +12,13 @@
     <title>Login to Evil.corp</title>
 </head>
 <body>
-    <spring:form modelAttribute="userToAuth" method="post" action="/user-system/checkUser">
+    <b1>${msg}</b1>
+    <br>
+    <spring:form modelAttribute="authCredentials" method="post" action="/user-system/checkUser">
         Please login:
-        <spring:input path="name"/>
+        <spring:input path="userName"/>
         <spring:input path="password"/>
         <spring:button>login</spring:button>
-
     </spring:form>
 </body>
 </html>

@@ -2,25 +2,22 @@ package system.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import system.model.AuthCredentials;
 import system.model.User;
-
-import java.util.List;
 
 @Repository
 public class LoginDao {
 
     @Autowired
-    private UserDao usersDao;
+    private UserDao userDao;
 
-    public int getUserAccessLevel(String userName, String password) {
-        List<User> users = usersDao.getAllUsers();
-
-        for (User u : users){
-            if(u.getName().equals(userName) && u.getPassword().equals(password)){
-                return u.getAccessLevel();
+    public User getUser(AuthCredentials creds) {
+        for (User u : userDao.getAllUsers()){
+            if(u.getUserName().equals(creds.getUserName()) &&
+                    u.getPassword().equals(creds.getPassword())){
+                return u;
             }
         }
-
-        return 0;
+        return null;
     }
 }

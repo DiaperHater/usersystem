@@ -1,7 +1,9 @@
 system/dao/UserDao.class
 system/service/LoginService.class
-system/controller/UserController.class
-system/service/UserService.class
+system/model/Vacation.class
 system/controller/LoginController.class
 system/model/User.class
+system/model/AuthCredentials.class
+system/model/Vacation$Status.class
 system/dao/LoginDao.class
+system/model/Department.class
