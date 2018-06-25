@@ -13,9 +13,7 @@
 </head>
 <body>
 
-    <spring:form modelAttribute="user" method="post" action="/user-system/userInfo">
-        <spring:input path="${user.vacation.}"
-    </spring:form>
+    vac req
 
 </body>
 </html>

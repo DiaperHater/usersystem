@@ -76,10 +76,4 @@ public class Vacation {
         return "from:"+ f + " to:" + t + " status:" + status;
     }
 
-    public static void main(String[] args) throws Exception {
-        Vacation v = new Vacation("5/4/2018","6/1/2018", Status.REQUESTED);
-
-        System.out.println(v.getFrom());
-        System.out.println(v.getTo());
-    }
 }

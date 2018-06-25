@@ -60,15 +60,5 @@ public class MyController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/vacationRequest", method = RequestMethod.POST)
-    public ModelAndView userInfo(@ModelAttribute("user") User user) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("user", user);
-        modelAndView.setViewName("accessor_home_page");
-        return modelAndView;
-    }
-
-
-
 
 }
