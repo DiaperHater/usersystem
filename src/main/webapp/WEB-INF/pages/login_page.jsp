@@ -12,6 +12,7 @@
     <title>Login to Evil.corp</title>
 </head>
 <body>
+    <b1>Welcome to Evil corp.</b1>
     <b1>${msg}</b1>
     <br>
     <spring:form modelAttribute="authCredentials" method="post" action="/user-system/checkUser">

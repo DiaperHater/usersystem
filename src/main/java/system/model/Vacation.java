@@ -2,49 +2,69 @@ package system.model;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.concurrent.TimeUnit;
 
 public class Vacation {
 
-    public enum Status{REQUESTED, APPROVED, NA}
+    public enum Status{REQUESTED, APPROVED, NA, REJECTED}
 
-    private GregorianCalendar from;
-    private GregorianCalendar to;
+    private GregorianCalendar from = new GregorianCalendar();
+    private GregorianCalendar to = new GregorianCalendar();
     private Status status;
 
     public Vacation() {
         status = Status.NA;
     }
 
-    public Vacation(GregorianCalendar from, GregorianCalendar to, Status status) {
-        this.from = from;
-        this.to = to;
+    public Vacation(String fromDate, String toDate, Status status) throws Exception {
+        setCalToString(from, fromDate);
+        setCalToString(to, toDate);
         this.status = status;
     }
 
-    public GregorianCalendar getFrom() {
-        return from;
+    public String getFrom() {
+       return convertCalendarToString(from);
     }
 
-    public void setFrom(GregorianCalendar from) {
-        this.from = from;
+
+    public void setFrom(String date) throws Exception {
+        setCalToString(from, date);
+        GregorianCalendar gc = new GregorianCalendar();
     }
 
-    public GregorianCalendar getTo() {
-        return to;
+    public String getTo() {
+        return convertCalendarToString(to);
     }
 
-    public void setTo(GregorianCalendar to) {
-        this.to = to;
+    public void setTo(String date) throws Exception {
+        setCalToString(to, date);
     }
+
+    private void setCalToString(GregorianCalendar cal, String date) throws Exception {
+        String[] part = date.split("/");
+        if (part.length != 3){
+            throw new Exception("Wrong date format in Vacation.setFrom()");
+        }
+
+        cal.set(Calendar.MONTH, Integer.parseInt(part[0]));
+        cal.set(Calendar.DATE, Integer.parseInt(part[1]));
+        cal.set(Calendar.YEAR, Integer.parseInt(part[2]));
+    }
+
+    private String convertCalendarToString(GregorianCalendar cal) {
+        String month = String.valueOf(cal.get(GregorianCalendar.MONTH));
+        String date = String.valueOf(cal.get(GregorianCalendar.DATE));
+        String year = String.valueOf(cal.get(GregorianCalendar.YEAR));
+        return month +'/'+ date +'/'+ year;
+    }
+
 
     public Status getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
-    }
+    public void reject(){status = Status.REJECTED;}
+
+    public void approve(){status = Status.APPROVED;}
 
     @Override
     public String toString() {
@@ -56,8 +76,10 @@ public class Vacation {
         return "from:"+ f + " to:" + t + " status:" + status;
     }
 
-    public static void main(String[] args) {
-        Vacation v = new Vacation(new GregorianCalendar(2018, 1, 30), new GregorianCalendar(2018, 2, 24), Status.REQUESTED);
-        System.out.println(v);
+    public static void main(String[] args) throws Exception {
+        Vacation v = new Vacation("5/4/2018","6/1/2018", Status.REQUESTED);
+
+        System.out.println(v.getFrom());
+        System.out.println(v.getTo());
     }
 }

@@ -1,8 +1,8 @@
 /Users/elizaveta/IdeaProjects/UserSystemTwo/usersystem/src/main/java/system/model/User.java
 /Users/elizaveta/IdeaProjects/UserSystemTwo/usersystem/src/main/java/system/model/Vacation.java
-/Users/elizaveta/IdeaProjects/UserSystemTwo/usersystem/src/main/java/system/controller/LoginController.java
 /Users/elizaveta/IdeaProjects/UserSystemTwo/usersystem/src/main/java/system/model/AuthCredentials.java
-/Users/elizaveta/IdeaProjects/UserSystemTwo/usersystem/src/main/java/system/dao/UserDao.java
-/Users/elizaveta/IdeaProjects/UserSystemTwo/usersystem/src/main/java/system/service/LoginService.java
+/Users/elizaveta/IdeaProjects/UserSystemTwo/usersystem/src/main/java/system/controller/MyController.java
 /Users/elizaveta/IdeaProjects/UserSystemTwo/usersystem/src/main/java/system/model/Department.java
-/Users/elizaveta/IdeaProjects/UserSystemTwo/usersystem/src/main/java/system/dao/LoginDao.java
+/Users/elizaveta/IdeaProjects/UserSystemTwo/usersystem/src/main/java/system/dao/Dao.java
+/Users/elizaveta/IdeaProjects/UserSystemTwo/usersystem/src/main/java/system/service/SystemService.java
+/Users/elizaveta/IdeaProjects/UserSystemTwo/usersystem/src/main/java/system/dao/UsersDB.java
