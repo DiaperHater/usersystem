@@ -4,6 +4,7 @@ system/model/Vacation.class
 system/dao/Dao.class
 system/dao/UsersDB.class
 system/model/User.class
+system/controller/VactaionDates.class
 system/model/AuthCredentials.class
 system/model/Vacation$Status.class
 system/model/Department.class

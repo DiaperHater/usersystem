@@ -64,6 +64,8 @@ public class Vacation {
 
     public void reject(){status = Status.REJECTED;}
 
+    public void request(){status = Status.REQUESTED;}
+
     public void approve(){status = Status.APPROVED;}
 
     @Override
@@ -71,9 +73,9 @@ public class Vacation {
         if(status == Status.NA){
             return "NA";
         }
-        String f = from.get(Calendar.YEAR) +"."+from.get(Calendar.MONTH)+"."+from.get(Calendar.DATE);
-        String t = to.get(Calendar.YEAR) +"."+to.get(Calendar.MONTH)+"."+to.get(Calendar.DATE);
-        return "from:"+ f + " to:" + t + " status:" + status;
+        String f = from.get(Calendar.MONTH)+"/"+from.get(Calendar.DATE) + "/" + from.get(Calendar.YEAR);
+        String t = to.get(Calendar.MONTH) +"/"+to.get(Calendar.DATE)+"/"+to.get(Calendar.YEAR);
+        return status + " from "+ f + ", to " + t;
     }
 
 }

@@ -20,4 +20,21 @@ public class Dao {
         }
         return null;
     }
+
+    public User getUserById(int userId) throws Exception {
+        for (User u : usersDB.getAllUsers()){
+            if(u.getId() == userId){
+                return u;
+            }
+        }
+        throw new Exception("No user with id: "+ userId);
+    }
+
+    public void saveUser(User userToStore) {
+        for (User u : usersDB.getAllUsers()){
+            if (u.getId() == userToStore.getId()){
+                u = userToStore;
+            }
+        }
+    }
 }

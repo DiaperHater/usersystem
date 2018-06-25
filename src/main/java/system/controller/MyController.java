@@ -5,10 +5,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import system.model.AuthCredentials;
 import system.model.User;
+import system.model.Vacation;
 import system.service.SystemService;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 @Controller
 @RequestMapping("")
@@ -16,6 +21,7 @@ public class MyController {
 
     @Autowired
     private SystemService systemService;
+    private User currentUser = new User();
 
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -38,10 +44,11 @@ public class MyController {
             modelAndView.setViewName("login_page");
             return modelAndView;
         }
+        currentUser = user;
 
         switch (user.getAccessLevel()){
             case 1:
-                modelAndView.addObject("user", user);
+                modelAndView.addObject("user", currentUser);
                 modelAndView.setViewName("accessor_home_page");
                 return modelAndView;
 
@@ -55,8 +62,31 @@ public class MyController {
     @RequestMapping(value = "/vacationRequest", method = RequestMethod.POST)
     public ModelAndView vacationRequest(@ModelAttribute("user") User user){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("user", user);
-        modelAndView.setViewName("vacation_request_page");
+
+        VactaionDates vactaionDates = new VactaionDates();
+        vactaionDates.setUserId(currentUser.getId());
+        modelAndView.addObject("vacationDates", vactaionDates);
+
+        modelAndView.setViewName("accessor_vacation_request_page");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/submitVacationRequest", method = RequestMethod.POST)
+    public ModelAndView
+    submitVacationRequest(@ModelAttribute("vacationDates")VactaionDates dates){
+        try {
+            currentUser.getVacation().setFrom(dates.getFrom());
+            currentUser.getVacation().setTo(dates.getTo());
+            currentUser.getVacation().request();
+            systemService.saveUser(currentUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("user", currentUser);
+        modelAndView.setViewName("accessor_home_page");
         return modelAndView;
     }
 

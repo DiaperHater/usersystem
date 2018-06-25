@@ -22,12 +22,14 @@ public class User {
     @Override
     public String toString() {
         return String.format("%s: <br>" +
+                        "-----------------------------\n"+
                         "   age:%d<br>" +
                         "   addr:%s<br> " +
                         "   email:%s<br> " +
                         "   dep:%s<br> " +
                         "   salary:%.2f$<br> " +
-                        "   vacation:%s<br>",
+                        "   vacation: %s<br>"+
+                        "------------------------------",
                 name, age, address, email, department, salary, vacation);
     }
 

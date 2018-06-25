@@ -16,5 +16,10 @@
     <spring:form modelAttribute="user" method="post" action="/user-system/vacationRequest">
         <spring:button>Order vacation request</spring:button>
     </spring:form>
+
+
+    <spring:form modelAttribute="user" method="get" action="/user-system/login">
+        <spring:button>logOut</spring:button>
+    </spring:form>
 </body>
 </html>
